@@ -13,33 +13,49 @@
 # 2. NEVER put bigger circle on smaller circle
 # 3. Can only move the topmost circle from any rod
 
+# MINIMUN 2^N-1 MOVES ARE REQUIRED
 
-def hanoi(n, src, aux, dst):
-    if n == 1:
-        print(f"Move disk 1 from {src} to {dst}")
-        return
+
+def hanoi(n, src, aux, dst): # DEFINING THE MAIN FUNCTION
+    # n = disks count
+    # src = source rod
+    # aux = helper rod
+    # dst = destination rod
+
+    if n == 1:  # BASE CASE : IF ONLY 1 DISK LEFT
+        # DIRECT MOVE(NO RECURSSION NEEDED) - SINGLE FRAME ONLY
+        print(f"Move disk 1 from {src} to {dst}")  # PRINT SINGLE DISK MOVE
+        return   # EXIT BASE CASE, NO RECURSION NEEDED
     
-    hanoi(n-1, src, dst, aux)
-    print(f"Move disk {n} from {src} to {dst}")
-    hanoi(n-1, aux, src, dst)
+    hanoi(n-1, src, dst, aux)  # FIRST RECURSSIVE CALL
+    print(f"Move disk {n} from {src} to {dst}")  # LARGEST DISK MOVED
+    hanoi(n-1, aux, src, dst)  # SECOND RECURSSIVE CALL 
 
-print("=== TOWER OF HANOI n=3 (7 moves) ===")
-hanoi(3, 'A', 'B', 'C')
 
-move_count = [0]
-def hanoi_count(n, src, aux, dst, count):
-    if n == 1:
-        count[0] += 1
-        return
-    hanoi_count(n-1, src, dst, aux, count)
-    hanoi_count(n-1, aux, src, dst, count)
+print("=== TOWER OF HANOI n=3 (7 moves) ===")  # EXAMPLE
+hanoi(3, 'A', 'B', 'C')  # MAIN FUNCTION CALL
 
-print("\n=== MOVE COUNT n=4 ===")
-move_count[0] = 0
-hanoi_count(4, 'A', 'B', 'C', move_count)
-print(f"n=4 needs {move_count[0]} moves")
+move_count = [0]  # LIST : MUTABLE COUNTER 
+
+def hanoi_count(n, src, aux, dst, count): # DEFINING HANOI COUNTER FUNCTION
+
+    if n == 1:  # BASE CASE 
+        count[0] += 1  # COUNT BASE CASE MOVES - INCREMENT MOVE COUNTER
+        return  # EXIT BASE CASE
+    
+    hanoi_count(n-1, src, dst, aux, count)  # RECURSE : MOVE N-1 TO AUX
+    hanoi_count(n-1, aux, src, dst, count)  # RECURSE : MOVE N-1 TO DEST
+
+
+print("\n=== MOVE COUNT n=4 ===")  # PRINTING MESSAGE
+
+move_count[0] = 0  # RESET COUNTER TO 0
+hanoi_count(4, 'A', 'B', 'C', move_count)  # COUNT MOVES FOR N=4
+print(f"n=4 needs {move_count[0]} moves")  # PRINTING RESULT
+
 
 print("\n=== COMPLEXITY ===")
+
 print("Time Complexity: O(2^n)")
-print("n=1: 1 move, n=2: 3 moves, n=3: 7 moves, n=4: 15 moves")
-print("Pattern: 2^n - 1 = EXPONENTIAL GROWTH!")
+print("n=1: 1 move, n=2: 3 moves, n=3: 7 moves, n=4: 15 moves")  # PATTERN PROOF
+print("Pattern: 2^n - 1 = EXPONENTIAL GROWTH!")  # MATHEMATICAL FORMULA
