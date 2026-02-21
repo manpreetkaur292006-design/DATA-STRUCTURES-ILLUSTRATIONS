@@ -58,3 +58,20 @@ triangular_loop(int(input("Enter the number of iterations :")))
 
 # 4. HALVING LOOP - O(log(n))
 
+def halving_loop(n):
+
+    count=0
+    size=n
+
+    while size>0:
+        count+=1
+        size//=2
+
+    print(f"Number of operations performed : {count}")
+    print("Time Complexity : O(log(n))")
+    print("Justification : loop runs log base 2 n times.")
+    print("Size halves each iteration.")
+
+halving_loop(int(input("Enter the number of iterations :")))
+
+
