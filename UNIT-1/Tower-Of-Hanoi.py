@@ -1,6 +1,19 @@
 
 # TOWER OF HANOI (N=3 TRACE + COMPLEXITY)
 
+# Tower of Hanoi is a simple game:
+
+# 3 rods (A, B, C) + some circles of different sizes (disks)
+
+# START: All circles stacked on rod A (biggest at bottom, smallest at top)
+# GOAL: Move ALL circles to rod C (same order)
+
+# 3 SIMPLE rules:
+# 1. Move only 1 circle at a time
+# 2. NEVER put bigger circle on smaller circle
+# 3. Can only move the topmost circle from any rod
+
+
 def hanoi(n, src, aux, dst):
     if n == 1:
         print(f"Move disk 1 from {src} to {dst}")
