@@ -77,8 +77,8 @@ def halving_loop(n):  # defining the function
 
 
 
-def linear_search_cases():  
-
+def linear_search_cases():   # PRINT LINEAR SEARCH CASES
+ 
     print("\n Linear Search Case Analysis.")
     print("Best Case : O(1)")
     print("Example : Element at first position.")
@@ -88,7 +88,7 @@ def linear_search_cases():
     print("Example : Element at end or absent.")
 
 
-def binary_search_cases():
+def binary_search_cases():  # PRINT BINARY SEARCH CASES
 
     print("\n Binary Search Case Analysis (SORTED DATA REQUIRED !)")
     print("Best Case : O(1)")
