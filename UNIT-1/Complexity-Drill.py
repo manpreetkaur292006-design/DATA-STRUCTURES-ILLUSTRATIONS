@@ -20,8 +20,6 @@ def single_loop(n):   # function defination
     print(f"Justification : Loop runs {n} times exactly .")  # justification of the time complexity
     print("Linear growth with input size.")
 
-# calling the function and taking an input from user inside it.
-single_loop(int(input("Enter the number of iterations :")))  
 
 
 # 2. NESTED LOOP - O(n^2)
@@ -40,8 +38,6 @@ def nested_loop(n):  # function defination
     print(f"Justification : Outer loop runs {n} times, inner loop runs {n} times each.")  # justification of time complexity
     print("Quadratic Growth - disastrous for large n.")
 
-# calling the function and taking the input of number of iterations from the user
-nested_loop(int(input("Enter the number of iterations :")))
 
 
 # 3. TRIANGULAR LOOP - O(n^2)
@@ -61,8 +57,6 @@ def triangular_loop(n):  # function defination
     print(f"Justification : Inner loop is sum to ({n}**2)/2 , n^2/2 operations.")  # justifiaciton of the time complexity
     print("Quardratic Growth - despite it is triangular pattern.")
 
-# calling the function and taking the input of number of iterations from the user    
-triangular_loop(int(input("Enter the number of iterations :")))
 
 
 # 4. HALVING LOOP - O(log(n))
@@ -81,7 +75,47 @@ def halving_loop(n):  # defining the function
     print("Justification : loop runs log base 2 n times.")  # justification of the time complexity
     print("Size halves each iteration.")
 
-# calling the function and taking the number of iterations from user as an input
-halving_loop(int(input("Enter the number of iterations :")))
 
+
+def linear_search_cases():  
+
+    print("\n Linear Search Case Analysis.")
+    print("Best Case : O(1)")
+    print("Example : Element at first position.")
+    print("Average Case : O(n)")
+    print("Example : Element in middle of the list.")
+    print("Worst Case : O(n)")
+    print("Example : Element at end or absent.")
+
+
+def binary_search_cases():
+
+    print("\n Binary Search Case Analysis (SORTED DATA REQUIRED !)")
+    print("Best Case : O(1)")
+    print("Example : Element at middle position.")
+    print("Average Case : O(log(n))")
+    print("Example : After few divisions.")
+    print("Worst Case : O(log(n))")
+    print("Example : After maximum division.")
+
+
+# MAIN DRIVER CODE
+def main():
+    n=int(input("Enter value of n :"))  
+    # taking the number of iterations as an input from the user
+
+    print("\n===Complexity Demo===")
+
+    # CALLING ALL THE FUNCTIONS IN THE MAIN FUNCTION
+    single_loop(n)  
+    nested_loop(n)
+    triangular_loop(n)
+    halving_loop(n)
+
+    linear_search_cases()
+    binary_search_cases()
+
+
+if __name__=="__main__":
+    main()  # calling the main function
 
