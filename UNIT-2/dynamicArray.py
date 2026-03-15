@@ -25,7 +25,7 @@ class DynamicArray:
             self.array = [None] * self.capacity
             for i in range(self.size):
                 self.array[i] = old[i]
-            print(f"🔄 RESIZED: {self.capacity//2} → {self.capacity}")
+            print(f"RESIZED: {self.capacity//2} → {self.capacity}")
         
         self.array[self.size] = value
         self.size += 1
