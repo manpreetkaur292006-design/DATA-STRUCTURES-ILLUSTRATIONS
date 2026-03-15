@@ -9,51 +9,136 @@
 
 # ANSWER : 
 
-class DynamicArray:
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+class DoublyLinkedList:
     def __init__(self):
-        self.size = 0        # Number of elements
-        self.capacity = 4    # Initial capacity
-        self.array = [None] * self.capacity
+        self.head = None
     
-    def print_state(self):
-        print(f"Size: {self.size}, Capacity: {self.capacity}, Array: {' '.join(map(str, self.array[:self.size]))}")
-    
-    def append(self, value):
-        if self.size == self.capacity:
-            # RESIZE: Double capacity
-            old = self.array
-            self.capacity *= 2
-            self.array = [None] * self.capacity
-            for i in range(self.size):
-                self.array[i] = old[i]
-            print(f"🔄 RESIZED: {self.capacity//2} → {self.capacity}")
+    def print_list(self):
+        if not self.head:
+            print("Empty list")
+            return
         
-        self.array[self.size] = value
-        self.size += 1
-    
-    def pop(self):
-        if self.size == 0:
-            print("Empty array")
-            return None
+        temp = self.head
+        forward = []
+        backward = []
         
-        self.size -= 1
-        popped = self.array[self.size]
-        self.array[self.size] = None  # Optional: clear slot
-        print(f"Popped: {popped}")
-        return popped
+        # Forward traversal
+        while temp:
+            forward.append(str(temp.data))
+            temp = temp.next
+        
+        # Backward traversal (verify prev pointers)
+        temp = self.get_last()
+        while temp:
+            backward.append(str(temp.data))
+            temp = temp.prev
+        
+        print("Forward:  " + " <-> ".join(forward))
+        print("Backward: " + " <-> ".join(backward[::-1]))  # Reverse to match forward
+        print()
+    
+    def get_last(self):
+        temp = self.head
+        while temp and temp.next:
+            temp = temp.next
+        return temp
+    
+    def find_target(self, target):
+        """Find node with target value"""
+        temp = self.head
+        while temp:
+            if temp.data == target:
+                return temp
+            temp = temp.next
+        return None
+    
+    def insert_after(self, target, x):
+        """Insert x after node containing target"""
+        target_node = self.find_target(target)
+        if not target_node:
+            print(f"Target {target} not found")
+            return False
+        
+        new_node = Node(x)
+        new_node.next = target_node.next
+        new_node.prev = target_node
+        
+        if target_node.next:
+            target_node.next.prev = new_node
+        target_node.next = new_node
+        
+        return True
+    
+    def delete_at_position(self, pos):
+        """Delete node at 0-based position"""
+        if not self.head:
+            print("Empty list")
+            return False
+        
+        # Find node at position
+        temp = self.head
+        for i in range(pos):
+            if not temp:
+                print("Position out of range")
+                return False
+            temp = temp.next
+        
+        if not temp:
+            print("Position out of range")
+            return False
+        
+        # Update pointers (handles head/tail correctly)
+        if temp.prev:
+            temp.prev.next = temp.next
+        else:
+            self.head = temp.next  # Deleting head
+        
+        if temp.next:
+            temp.next.prev = temp.prev
+            # No need to update tail explicitly (no tail pointer)
+        
+        print(f"Deleted: {temp.data}")
+        return True
 
 # Lab Demo
-print("Dynamic Array Demo")
-da = DynamicArray()
+dll = DoublyLinkedList()
 
-# Append sequence (triggers resize)
-print("\n--- APPEND OPERATIONS ---")
-da.append(10); da.print_state()
-da.append(20); da.print_state()
-da.append(30); da.print_state()
-da.append(40); da.print_state()  # Triggers resize 4→8
-da.append(50); da.print_state()
+print("=== Doubly Linked List Demo ===\n")
 
-print("\n--- POP OPERATIONS ---")
-da.pop(); da.print_state()
-da.pop(); da.print_state()
+# Build initial list
+dll.head = Node(10)
+dll.head.next = Node(20)
+dll.head.next.prev = dll.head
+dll.head.next.next = Node(30)
+dll.head.next.next.prev = dll.head.next
+
+print("Initial list:")
+dll.print_list()
+
+# Test insert_after
+print("1. Insert 15 after 10:")
+dll.insert_after(10, 15)
+dll.print_list()
+
+print("2. Insert 25 after 20:")
+dll.insert_after(20, 25)
+dll.print_list()
+
+# Test delete_at_position
+print("3. Delete position 1 (15):")
+dll.delete_at_position(1)
+dll.print_list()
+
+print("4. Delete position 0 (head 10):")
+dll.delete_at_position(0)
+dll.print_list()
+
+print("5. Delete position 2 (last node):")
+dll.delete_at_position(2)
+dll.print_list()
