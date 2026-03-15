@@ -9,33 +9,100 @@
 
 # ANSWER : 
 
-# Program to create and print a 2D array (matrix)
+def print_array(arr):
+    print(' '.join(map(str, arr)))
 
-# Creating a 2D array (2 rows and 3 columns)
-matrix = [
-    [1, 2, 3],   # First row
-    [4, 5, 6]    # Second row
-]
+def insert_at(arr, pos, value, max_capacity):
+    n = len(arr)
+    if n == max_capacity or pos < 0 or pos > n:
+        print("Insertion not possible")
+        return arr, 0
+    shifts = 0
+    # Shift right from end to pos
+    for i in range(n - 1, pos - 1, -1):
+        arr[i + 1] = arr[i]
+        shifts += 1
+    arr[pos] = value
+    return arr[:n + 1], shifts  # Return sliced to new length
 
-# Printing entire matrix
-print("Complete Matrix:")
-print(matrix)
+def delete_at(arr, pos):
+    n = len(arr)
+    if n == 0 or pos < 0 or pos >= n:
+        print("Deletion not possible")
+        return arr, 0
+    shifts = 0
+    # Shift left from pos to end
+    for i in range(pos, n - 1):
+        arr[i] = arr[i + 1]
+        shifts += 1
+    return arr[:n - 1], shifts  # Slice off last
 
-print("\nMatrix Elements Row by Row:")
+def print_complexity(pos, n, is_insert):
+    if is_insert:
+        if pos == n:
+            print("Complexity: O(1) (at end)")
+        else:
+            print("Complexity: O(n) (shifting)")
+    else:
+        if pos == n - 1:
+            print("Complexity: O(1) (at end)")
+        else:
+            print("Complexity: O(n) (shifting)")
 
-# Loop through rows
-for i in range(len(matrix)):
-    
-    # Loop through columns
-    for j in range(len(matrix[i])):
-        
-        # Print each element with space
-        print(matrix[i][j], end=" ")
-    
-    # Move to next line after each row
-    print()
+# Main demo
+arr = [10, 20, 30, 40, 50]
+max_capacity = 100
+print("Initial array:")
+print_array(arr)
 
+shifts = 0
 
-# Accessing specific element
-print("\nAccess Specific Element:")
-print("Element at row 1 column 2 is:", matrix[0][1])
+# Insert START (pos=0)
+print("\nInsert at START:")
+arr, shifts = insert_at(arr, 0, 5, max_capacity)
+print("Updated array:")
+print_array(arr)
+print(f"Shift count: {shifts}")
+print_complexity(0, len(arr), True)
+
+# Insert MIDDLE (pos = len/2)
+print("\nInsert at MIDDLE:")
+mid_pos = len(arr) // 2
+arr, shifts = insert_at(arr, mid_pos, 99, max_capacity)
+print("Updated array:")
+print_array(arr)
+print(f"Shift count: {shifts}")
+print_complexity(mid_pos, len(arr), True)
+
+# Insert END (pos=len)
+print("\nInsert at END:")
+arr, shifts = insert_at(arr, len(arr), 999, max_capacity)
+print("Updated array:")
+print_array(arr)
+print(f"Shift count: {shifts}")
+print_complexity(len(arr)-1, len(arr), True)
+
+# Delete START (pos=0)
+print("\nDelete at START:")
+arr, shifts = delete_at(arr, 0)
+print("Updated array:")
+print_array(arr)
+print(f"Shift count: {shifts}")
+print_complexity(0, len(arr), False)
+
+# Delete MIDDLE
+print("\nDelete at MIDDLE:")
+mid_pos = len(arr) // 2
+arr, shifts = delete_at(arr, mid_pos)
+print("Updated array:")
+print_array(arr)
+print(f"Shift count: {shifts}")
+print_complexity(mid_pos, len(arr), False)
+
+# Delete END
+print("\nDelete at END:")
+arr, shifts = delete_at(arr, len(arr)-1)
+print("Updated array:")
+print_array(arr)
+print(f"Shift count: {shifts}")
+print_complexity(len(arr), len(arr), False)
