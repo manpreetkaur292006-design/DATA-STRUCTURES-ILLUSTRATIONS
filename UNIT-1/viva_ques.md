@@ -1,8 +1,8 @@
 
-# VIVA QUESTIONS 
+#  🎯 VIVA QUESTIONS 
 
 
-## StackADT
+## ➡️ StackADT
 
 ## 1. What is an ADT?
 
@@ -22,7 +22,7 @@
 **Answer** Browser back button uses a stack for navigation history. Every page you visit gets pushed onto the stack, and the back button pops the most recent one.
 
 
-## Complexity Drill
+## ➡️ Complexity Drill
 
 ## 1. Big-O vs Big-Theta difference?
 
@@ -38,7 +38,7 @@
 - **O proven → Θ not guaranteed**  
 - **Ex: O(n²) might actually be n runtime**
 
-2. What does worst-case represent?
+## 2. What does worst-case represent?
 
 **Answer**  **Worst-case represents the MAXIMUM time/space an algorithm takes for ANY possible input.**
 - **Definition**: Slowest possible execution across all input scenarios  
@@ -57,7 +57,7 @@
   - **O(n)** worst-case = "might need to check all n items"  
   - Protects against adversarial/malicious inputs
 
-3. Why complexity matters in real systems?
+## 3. Why complexity matters in real systems?
 
 **Answer**  Algorithm complexity determines if your system scales or crashes under real load.
 **Real-World Impact**
@@ -67,9 +67,9 @@ Google search: O(n²) would take years per query
 **Instagram feed:** Bad complexity = loading forever
 
 
-## Recursive Factorial
+## ➡️ Recursive Factorial
 
-1. What is recursion depth?
+## 1. What is recursion depth?
 
 **Answer**  Recursion depth is the maximum number of recursive calls stacked before hitting base case.
 **Definition:** Count of nested function calls on call stack
@@ -79,7 +79,7 @@ Google search: O(n²) would take years per query
 **Problem:** Depth > limit → Stack Overflow crash
 **Stack Push Connection:** Each recursive call = stack.push(context)
 
-2. Why recursion uses stack memory?
+## 2. Why recursion uses stack memory?
 
 **Answer** Recursion uses stack memory because each recursive call creates a new function frame pushed onto the call stack.
 **Function call =** stack frame creation (parameters, return address, local vars)
@@ -90,7 +90,7 @@ stack.pop() each return removes top frame
 **No recursion →** no deep stack usage (just normal function calls)
 **Stack overflow =** too many nested frames (recursion depth limit hit)
 
-3. When iteration is better than recursion?
+## 3. When iteration is better than recursion?
 
 **Answer**  Iteration beats recursion when performance + safety matters most.
 **Large inputs:** No stack overflow risk (recursion limited ~1000 calls)
@@ -100,13 +100,13 @@ stack.pop() each return removes top frame
 **Production code:** Guaranteed no crashes under heavy load
 
 
-## Fibonacci
+## ➡️ Fibonacci
 
-1. Why naive Fibonacci is slow?
+## 1. Why naive Fibonacci is slow?
 
 **Answer** Naive Fibonacci is slow due to massive redundant calculations creating exponential time complexity.
 
-2. Memoization relates to DP ?
+## 2. Memoization relates to DP ?
 
 **Answer**  Yes, memoization is a core technique of Dynamic Programming (top-down approach).
 **Memoization:** Cache recursive results to avoid recomputation
@@ -115,19 +115,19 @@ stack.pop() each return removes top frame
 **Tabulation =** Iterative DP (bottom-up with table)
 **Both solve:** Same subproblem → same answer (overlapping subproblems)
 
-3. Space impact of memoization?
+## 3. Space impact of memoization?
 
 **Answer** Memoization trades time for space - adds O(n) memory overhead.
 **Cache storage:** O(n) array/dict for all subproblem results
 **Recursion stack:** O(n) frames (depth = n for Fibonacci)
 **Total:** O(n) extra space beyond input
 
-## Tower Of Hanoi
+## ➡️ Tower Of Hanoi
 
-1. Why moves are 2n-1?
+## 1. Why moves are 2n-1?
 **Answer**
 
-2. What is recursion tree idea?
+## 2. What is recursion tree idea?
 
 **Answer**  Tower of Hanoi needs exactly 2^n - 1 moves minimum.
 To move n disks from A→C using B:
@@ -139,7 +139,7 @@ T(1) = 1
 **Solution:** T(n) = 2^n - 1 
 
 
-3. Practical risk of exponential algorithms?
+## 3. Practical risk of exponential algorithms?
 
 **Answer**  Exponential algorithms crash real systems beyond tiny inputs.
 **Practical Risks**
@@ -149,9 +149,9 @@ T(1) = 1
 **Memory:** 2^n RAM → n=30 = 8GB, n=40 = 1TB+
 
 
-## Recursive Binary Search
+## ➡️ Recursive Binary Search
 
-1. Why sorted data is required?
+## 1. Why sorted data is required?
 
 **Answer**  Sorted data enables log n algorithms instead of linear n searches.
 **Binary Search:** Unsorted = O(n), Sorted = O(log n)
@@ -159,7 +159,7 @@ T(1) = 1
 **Kth smallest:** Direct index access O(1) after sort
 **Duplicate removal:** Adjacent equals after sorting
 
-2. Best/avg/worst case?
+## 2. Best/avg/worst case?
 
 **Answer**  Best/Avg/Worst case measures algorithm performance across input scenarios.
 **Best Case:** Minimum operations (ideal input)
@@ -169,7 +169,7 @@ T(1) = 1
 **Average Case:** Expected operations (random input)
 **Linear search:** target anywhere = n/2 comparisons avg
 
-3. Divide & Conquer meaning?
+## 3. Divide & Conquer meaning?
 
 **Answer** Divide & Conquer breaks big problems into smaller identical problems recursively.
 **3-Step Process**
