@@ -1,8 +1,8 @@
 
-# VIVA QUESTIONS 
+# 🎯  VIVA QUESTIONS 
 
 
-# ARRAY 1D (OPERATIONS + SHIFTING COST)
+## ➡️ ARRAY 1D (OPERATIONS + SHIFTING COST)
 
 
 ## 1. WHY INDEX ACCESS IS O(1) ? 
@@ -16,7 +16,7 @@
 Dynamic: Resizes automatically when full (Python lists, Java ArrayList). Doubles capacity on overflow → amortized O(1) append.
 
 
-# ARRAY 2D (MATRIX TRAVERSAL + OPERATIONS)
+## ➡️ ARRAY 2D (MATRIX TRAVERSAL + OPERATIONS)
 
 
 ## 1. COMPLEXITY OF SCANNING A MATRIX ?
@@ -29,7 +29,7 @@ Dynamic: Resizes automatically when full (Python lists, Java ArrayList). Doubles
 **Answer :** Row-major order: Entire row0, row1, row2... stored continuously. matrix[i][j] = base + (i*cols + j)*size. Fast row access, column access jumps.
 
 
-# DYNAMIC ARRAY SIMULATION (RESIZE + POP)
+## ➡️  DYNAMIC ARRAY SIMULATION (RESIZE + POP)
 
 
 ## 1. WHAT IS AMORTIZED COMPLEXITY ?
@@ -42,7 +42,7 @@ Dynamic: Resizes automatically when full (Python lists, Java ArrayList). Doubles
 **Answer :** Just size--. No shifting/copying. Last element conceptually "removed" by moving size pointer. Internal array unchanged.
 
 
-# SINGLY LINKED LIST (CORE OPERATIONS)
+## ➡️  SINGLY LINKED LIST (CORE OPERATIONS)
 
 
 ## 1. WHY SEARCH IS O(N) ?
@@ -57,7 +57,7 @@ Dynamic: Resizes automatically when full (Python lists, Java ArrayList). Doubles
     next = pointer    # Address of next node (None at tail)
 
 
-# DOUBLY LINKED LIST (EXTENDED OPERATIONS)
+## ➡️  DOUBLY LINKED LIST (EXTENDED OPERATIONS)
 
 
 ## 1. DLL ADVANTAGE OVER SLL ?
@@ -70,7 +70,7 @@ Dynamic: Resizes automatically when full (Python lists, Java ArrayList). Doubles
 **Answer :** Node knows both neighbors: temp.prev.next = temp.next; temp.next.prev = temp.prev. No traversal to find previous node (unlike SLL).
 
 
-# STACK USING SLL + PARENTHESES CHECKER
+## ➡️  STACK USING SLL + PARENTHESES CHECKER
 
 
 ## 1. WHY STACK IS IDEAL HERE ?
@@ -83,7 +83,7 @@ Dynamic: Resizes automatically when full (Python lists, Java ArrayList). Doubles
 **Answer :** Pop empty stack. More closing brackets than opening ones. Stack empty but ) encountered → invalid expression.
 
 
-# QUEUE USING SLL (O(1) OPERATIONS)
+## ➡️  QUEUE USING SLL (O(1) OPERATIONS)
 
 
 ## 1. BFS USES QUEUE ?
