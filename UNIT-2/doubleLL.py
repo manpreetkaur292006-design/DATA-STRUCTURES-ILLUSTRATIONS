@@ -44,7 +44,8 @@ class DoublyLinkedList:  # creating a class - that is the blueprint for the enti
             backward.append(str(temp.data))   # writing the number of the Node
             temp = temp.prev   # Move to previous Node (left hand)
         
-        print("Forward:  " + " <-> ".join(forward))  
+        print("Forward:  " + " <-> ".join(forward))  # joining the forward elements with <->
+        # reversing backward and joining with <-> to match the forward for verification
         print("Backward: " + " <-> ".join(backward[::-1]))  # Reverse to match forward order for verification
         print()
     
