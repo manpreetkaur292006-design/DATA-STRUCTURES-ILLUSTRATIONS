@@ -10,69 +10,76 @@
 
 class Node:
     def __init__(self, data):
-        self.data = data
+        # each node contains data and points to the next node
+        self.data = data 
         self.next = None
 
 class SinglyLinkedList:
     def __init__(self):
+        # pointing the first node initially none
         self.head = None
     
     def traverse(self):
+        # if head is empty then print message and stop
         if not self.head:
             print("List: Empty")
             return
         
-        temp = self.head
-        result = []
-        while temp:
-            result.append(str(temp.data))
-            temp = temp.next
-        print("List: " + " → ".join(result))
+        temp = self.head  # storing head in the temp
+        result = []  # empty array for storing the results
+        while temp:  # while the temp exists
+            result.append(str(temp.data)) # adding the data in the result
+            temp = temp.next # updating the temp to temp.next
+        print("List: " + " → ".join(result))  # printing the result
     
     def insert_begin(self, data):
-        new_node = Node(data)
-        new_node.next = self.head
-        self.head = new_node
-        print(f"Inserted {data} at beginning")
+        new_node = Node(data)   # creating new node
+        new_node.next = self.head  # setting the next of new node to head
+        self.head = new_node  # and head points to new node
+        print(f"Inserted {data} at beginning")  # printing the data
     
     def insert_end(self, data):
-        new_node = Node(data)
-        if not self.head:
+        new_node = Node(data)  # creating new node
+        if not self.head:  
+            # when the self.head is empty , head becomes new node and print the results
             self.head = new_node
             print(f"Inserted {data} at end")
             return
         
-        temp = self.head
-        while temp.next:
-            temp = temp.next
-        temp.next = new_node
-        print(f"Inserted {data} at end")
+        temp = self.head  
+        while temp.next: # looping till the end of the list
+            temp = temp.next # updating temp to temp.next
+        temp.next = new_node   # and temp.next to new node
+        print(f"Inserted {data} at end")  # printing the results
     
     def delete_by_value(self, key):
-        if not self.head:
+        if not self.head:  # if the list is empty print message and return False
             print("Empty list")
             return False
         
         # Case 1: Delete head
-        if self.head.data == key:
+        if self.head.data == key:  # if the head is equal to key then we will be deleted
             self.head = self.head.next
             print(f"Deleted head: {key}")
             return True
         
         # Case 2: Delete middle/tail
+        # deleting the element from the tail or middle - searching it and matching the result and
+        # deleting the element and then printing the result and then returning True if deleted
         temp = self.head
         while temp.next:
             if temp.next.data == key:
                 temp.next = temp.next.next
                 print(f"Deleted: {key}")
                 return True
-            temp = temp.next
+            temp = temp.next  # updating the temp
         
-        print(f"{key} not found")
+        print(f"{key} not found")  # if not found print message and return False
         return False
 
 # Lab Demo - All operations + edge cases
-sll = SinglyLinkedList()
+# code testing by running all the functions
+sll = SinglyLinkedList()  # object creation
 
 print("=== Singly Linked List Demo ===\n")
 
