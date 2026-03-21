@@ -9,63 +9,74 @@
 # ANSWER :
 
 class Node:
-    def __init__(self, data):
+    def __init__(self, data):  
+        # each node holds data and points to the next
         self.data = data
         self.next = None
 
 class Queue:
     def __init__(self):
-        self.front = None  # Dequeue from front
-        self.rear = None   # Enqueue at rear (TAIL POINTER)
-        self.size = 0
+        self.front = None  # Dequeue from front - first person who leaved first
+        self.rear = None   # Enqueue at rear (TAIL POINTER) - last person new people join here
+        self.size = 0      # initially empty line
     
     def enqueue(self, data):
-        new_node = Node(data)
+        new_node = Node(data) # object creation
         
         # Underflow safe
-        if self.rear is None:
+        if self.rear is None: # empty queue check
+            # if the queue is empty them new person becomes both front and rear
             self.front = self.rear = new_node
         else:
+            # if the queue is not empty them the rear points to the new person 
+            # and updating the rear to new person
             self.rear.next = new_node  # O(1) with tail pointer!
             self.rear = new_node
         
-        self.size += 1
-        print(f"Enqueued: {data}")
+        self.size += 1  # increasing size by 1
+        print(f"Enqueued: {data}")  # printing details
     
     def dequeue(self):
-        if self.front is None:
+        # checking whether the queue is empty or not and printing the messages
+        if self.front is None:  
             print("UNDERFLOW: Empty queue")
             return None
         
+        # saving that who left from the front and moving the front to the next person
         removed = self.front.data
         self.front = self.front.next
         
+        # if front is none then setting the rear to none
         if self.front is None:
             self.rear = None  # Last element removed
         
-        self.size -= 1
-        print(f"Dequeued: {removed}")
-        return removed
+        self.size -= 1  # size decreased  by 1
+        print(f"Dequeued: {removed}")  # printing the details
+        return removed  # returning the removed element
     
     def front_element(self):
-        return self.front.data if self.front else None
+        if self.front is None:  # if front is none return none
+            return None
+        else:  # else return the front element 
+            return self.front.data
     
     def print_queue(self):
-        if not self.front:
+        if not self.front:  # if queue is empty return the message
             print("Queue: Empty")
             return
         
-        temp = self.front
-        result = []
-        while temp:
-            result.append(str(temp.data))
-            temp = temp.next
-        print(f"Queue: {' → '.join(result)} (size={self.size})")
+        temp = self.front  # creating a temp variable
+        result = []  # empty array for store data
+        while temp:  # while the temp exists
+            result.append(str(temp.data))  # add the elements to the results 
+            temp = temp.next # moving to the next person
+        print(f"Queue: {' → '.join(result)} (size={self.size})")  # printing the details
 
-# Lab Demo
+
+# Lab Demo - code testing by running all the functions 
 print("=== Queue using SLL (O(1) operations) ===\n")
 
-q = Queue()
+q = Queue() # object creation
 
 # Test sequence
 print("1. Enqueue operations:")
