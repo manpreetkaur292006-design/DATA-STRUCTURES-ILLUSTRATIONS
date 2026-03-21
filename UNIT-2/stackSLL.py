@@ -10,21 +10,29 @@
 
 class Node:
     def __init__(self, data):
+        # each node contains data and points to the next node
         self.data = data
         self.next = None
 
 class Stack:
     def __init__(self):
-        self.top = None
+        self.top = None  # setting the top most element none 
+        # as initially there is nothing in the stack
     
     def push(self, data):
-        new_node = Node(data)
-        new_node.next = self.top
-        self.top = new_node
+        new_node = Node(data) # new node created
+        new_node.next = self.top  # new node points to the old top 
+        # (new plate next-> current top plate)
+        self.top = new_node  # top is pointing to the new plate added
     
     def pop(self):
+        # checking whether the stack is empty or not 
+        # if empty return none
         if not self.top:
             return None
+        
+        # otherwise pop the element from the top and save it and set the
+        # top to the next plate and return the popped element
         popped = self.top.data
         self.top = self.top.next
         return popped
@@ -33,23 +41,26 @@ class Stack:
         return self.top.data if self.top else None
     
     def is_empty(self):
-        return self.top is None
+        # retuning whether the stack is empty or not (t/f)
+        return self.top is None  
 
 def is_valid_parentheses(s):
-    stack = Stack()
-    pairs = {')': '(', ']': '[', '}': '{'}
+    stack = Stack()  # new empty stack object
+    pairs = {')': '(', ']': '[', '}': '{'}  # pairs or parenthesis dict
     
-    for char in s:
-        if char in pairs:  # Closing bracket
-            top = stack.pop()
-            if top != pairs[char]:
+    for char in s:  # looping through the each character
+        if char in pairs:  # Closing bracket - is the bracket is closing ?
+            top = stack.pop()   # take the top opening bracket
+            if top != pairs[char]:  # does it matches with the closing one ?
                 return False
         else:  # Opening bracket
-            stack.push(char)
+            stack.push(char)  # push the opening bracket into the stack 
     
-    return stack.is_empty()
+    return stack.is_empty()  # return if the stack is empty or not 
+    # empty stack means valid parenthesis
 
-# Lab Demo
+
+# Lab Demo - code testing by running all the functions
 print("=== Stack using SLL + Parentheses Checker ===\n")
 
 # Test Stack Operations
