@@ -38,7 +38,10 @@ class Stack:
         return popped
     
     def peek(self):
-        return self.top.data if self.top else None
+        # if the top is none return none otherwise return the top element of the stack
+        if self.top is None:
+            return None
+        return self.top.data
     
     def is_empty(self):
         # retuning whether the stack is empty or not (t/f)
