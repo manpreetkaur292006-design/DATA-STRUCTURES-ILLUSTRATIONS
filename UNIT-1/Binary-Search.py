@@ -46,20 +46,20 @@ print("=== BINARY SEARCH DEMO ===")
 arr = [1, 3, 5, 7, 9, 11, 13, 15]  # testing the code with this sorted and even length array
  
  
-print("\n1. FOUND case:")  # Test-1 : key exists -> at index 3
+print("\n1. FOUND case:")  # if key exists give at index 3
 print("Index:", binarySearch(arr, 7, 0, len(arr)-1))
 
 
-print("\n2. NOT FOUND case:")  # Test-2 : key missing -> return -1 (handles missing key correctly)
+print("\n2. NOT FOUND case:")  # if key missing is return -1 (handles missing key correctly)
 print("Index:", binarySearch(arr, 8, 0, len(arr)-1))
 
 
-print("\n3. EMPTY array:")  # Test-3 : empty array -> low>high -> -1 returned -> low = 0 and high = -1
+print("\n3. EMPTY array:")  # if empty array 
 empty_arr = []  
 print("Index:", binarySearch(empty_arr, 5, 0, len(empty_arr)-1))
 
 
-print("\n=== RECURRENCE EXPLANATION ===")  # explanation
+print("\n=== RECURRENCE EXPLANATION ===")  # explanation of time complesity
 
 print('''T(n) = Time to solve array size n
 Each step:
