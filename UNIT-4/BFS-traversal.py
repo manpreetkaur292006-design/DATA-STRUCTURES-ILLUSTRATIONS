@@ -1,41 +1,47 @@
-class TreeNode:
-    def __init__(self, key):
-        self.key = key
-        self.left = None
-        self.right = None
+from collections import deque
+graph = {}
+edges = [
+    ('A', 'B', 4), ('A', 'C', 2),
+    ('B', 'D', 5), ('B', 'E', 3),
+    ('C', 'D', 1), ('C', 'F', 6),
+    ('D', 'E', 2),
+    ('E', 'F', 4),
+    ('F', 'A', 7)
+]
 
-def insert(root, key):
-    if root is None:
-        return TreeNode(key)
-    elif root.key == key:
-        return root  
-    elif root.key < key:
-        root.right = insert(root.right, key)
-    else:
-        root.left = insert(root.left, key)
-    return root
+for src, dest, weight in edges:
+    if src not in graph:
+        graph[src] = []
+    graph[src].append((dest, weight))
+    if dest not in graph:
+        graph[dest] = []
 
-def search(root, key):
-    if root is None or root.key == key:
-        return root is not None
-    if root.key < key:
-        return search(root.right, key)
-    return search(root.left, key)
+def bfs(graph, start_node):
+    visited = set()         
+    queue = deque()       
+    traversal_order = []     
+    
+    queue.append(start_node)
+    visited.add(start_node)
+    
+    print(f"Starting BFS from: {start_node}")
+    print("Queue:", queue)
+    
+    while queue:
+        current = queue.popleft()
+        traversal_order.append(current)
+        print(f"Dequeued {current}, Order so far: {traversal_order}")
+        
+        for neighbor, weight in graph.get(current, []):
+            if neighbor not in visited:
+                queue.append(neighbor)
+                visited.add(neighbor) 
+                print(f"  Enqueued {neighbor} (from {current}, w={weight})")
+    
+    return traversal_order
 
-def inorder(root, result):
-    if root:
-        inorder(root.left, result)
-        result.append(root.key)
-        inorder(root.right, result)
-insert_keys = [50, 30, 70, 20, 40, 60, 80]
-search_keys = [25, 70, 90]
-root = None
-for key in insert_keys:
-    root = insert(root, key)
-inorder_result = []
-inorder(root, inorder_result)
-print("Inorder traversal (sorted):", inorder_result)
-print("\nSearch results:")
-for key in search_keys:
-    status = "Found" if search(root, key) else "Not Found"
-    print(f"Key {key}: {status}")
+start_node = 'A'
+bfs_order = bfs(graph, start_node)
+
+print(f"\nFinal BFS traversal order: {bfs_order}")
+print("All nodes visited:", len(bfs_order) == len(graph))
